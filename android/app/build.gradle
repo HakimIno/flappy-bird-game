@@ -83,7 +83,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.flappybird"
+    namespace "com.kimsnow33.FlappyBird"
     defaultConfig {
         applicationId 'com.kimsnow33.FlappyBird'
         minSdkVersion rootProject.ext.minSdkVersion

@@ -17,6 +17,8 @@ export const NotificationProvider = ({ children }) => {
         registerForPushNotificationsAsync().then(token => {
             if (token) {
                 setExpoPushToken(token);
+                // Save token to Supabase
+                saveTokenToSupabase(token);
             }
         });
 
@@ -36,7 +38,6 @@ export const NotificationProvider = ({ children }) => {
 
     const registerForPushNotificationsAsync = async () => {
         let token;
-        let error = null; // Initialize error variable
 
         if (Device.isDevice) {
             const { status: existingStatus } = await Notifications.getPermissionsAsync();
@@ -50,25 +51,21 @@ export const NotificationProvider = ({ children }) => {
                 return;
             }
             token = (await Notifications.getExpoPushTokenAsync()).data;
-
-            // // Save token to Supabase
-            // const { error: supabaseError } = await supabase
-            //     .from('expo_push_tokens')
-            //     .insert([{ token }]);
-
-            // if (supabaseError) {
-            //     console.error('Error saving token to Supabase:', supabaseError);
-            //     error = supabaseError; // Set error if any
-            // }
         } else {
             alert('Must use physical device for Push Notifications');
         }
 
-        if (error) {
-            // Optionally handle the error, e.g., show a user-friendly message
-        }
-
         return token;
+    };
+
+    const saveTokenToSupabase = async (token) => {
+        const { error: supabaseError } = await supabase
+            .from('expo_push_tokens')
+            .insert([{ token }]);
+
+        if (supabaseError) {
+            console.error('Error saving token to Supabase:', supabaseError);
+        }
     };
 
     const schedulePushNotification = async (title, body, data) => {
