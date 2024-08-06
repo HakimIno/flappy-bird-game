@@ -18,7 +18,7 @@ export const NotificationProvider = ({ children }) => {
             if (token) {
                 setExpoPushToken(token);
                 // Save token to Supabase
-                // saveTokenToSupabase(token);
+                saveTokenToSupabase(token);
             }
         });
 
@@ -58,9 +58,10 @@ export const NotificationProvider = ({ children }) => {
         return token;
     };
 
-    const saveTokenToSupabase = async (token) => {
+    const saveTokenToSupabase = async (fullToken) => {
+        const token = fullToken.match(/\[(.*?)\]/)[1];
         const { error: supabaseError } = await supabase
-            .from('expo_push_tokens')
+            .from('tokens_push_notification')
             .insert([{ token }]);
 
         if (supabaseError) {
