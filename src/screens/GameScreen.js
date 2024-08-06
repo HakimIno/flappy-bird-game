@@ -35,6 +35,8 @@ import {
 import { Audio } from 'expo-av';
 import { useSelector } from 'react-redux';
 import { Entypo, Ionicons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { StatusBar } from 'expo-status-bar';
 
 
 const GRAVITY = 1000;
@@ -284,19 +286,24 @@ const GameScreen = ({ navigation }) => {
     const r = size * 0.1;
     const rrct = {
         rect: { x: width / 2 - 150, y: height / 2 - 100, width: size, height: 100 },
-        topLeft: { x: r, y: r },
-        topRight: { x: r, y: r },
-        bottomRight: { x: r, y: r },
-        bottomLeft: { x: r, y: r },
+        topLeft: { x: 10, y: r },
+        topRight: { x: r, y: 10 },
+        bottomRight: { x: r, y: 10 },
+        bottomLeft: { x: r, y: 10 },
 
     };
 
-
+    const { top } = useSafeAreaInsets()
 
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
+            <StatusBar
+                barStyle="light-content"
+                backgroundColor="#4DC1CB"
+                translucent
+            />
             <GestureDetector gesture={gesture}>
-                <Canvas style={{ width, height }}>
+                <Canvas style={{ width, height, marginTop: top }}>
                     {/* BG */}
                     <Image image={bg} width={width} height={height} fit={'cover'} />
 
@@ -359,7 +366,7 @@ const GameScreen = ({ navigation }) => {
                             <RoundedRect
                                 rect={rrct}
                                 color="white"
-                                opacity={0.9}
+                                opacity={1}
                                 strokeWidth={4}
                             />
 
@@ -379,14 +386,14 @@ const GameScreen = ({ navigation }) => {
                 <>
 
 
-                    <View style={{ position: 'absolute', top: "41%", left: "23%" }}>
+                    <View style={{ position: 'absolute', top: "44%", left: "23%" }}>
                         <TextRn style={{ fontFamily: "PressStart2P_400Regular", fontSize: 20, color: "#674A2C" }}>
                             score: {score.toString()}
                         </TextRn>
                     </View>
 
 
-                    <View style={{ position: 'absolute', top: "50%", left: "-20%", flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%', marginLeft: "40%" }}>
+                    <View style={{ position: 'absolute', top: "53%", left: "-20%", flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%', marginLeft: "40%" }}>
                         <TouchableOpacity
                             style={{
                                 backgroundColor: 'white',

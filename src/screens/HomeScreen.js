@@ -8,6 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNotifications } from '../context/NotificationContext';
 import * as TaskManager from 'expo-task-manager';
 import * as BackgroundFetch from 'expo-background-fetch';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 
 
@@ -39,11 +40,21 @@ const HomeScreen = ({ navigation }) => {
     const openModal = () => setModalVisible(true);
     const closeModal = () => setModalVisible(false);
 
+    const { top } = useSafeAreaInsets()
     return (
         <View style={{ width, height }}>
-            <StatusBar style="auto" />
-            <Canvas style={{ width, height }}>
-                <Image image={useImage(require('../../assets/Background/tree_bg.png'))} width={width} height={height} fit={'cover'} />
+            <StatusBar
+                barStyle="light-content"
+                backgroundColor="#74D5D8"
+                translucent
+            />
+            <Canvas style={{ width, height, marginTop: top }}>
+                <Image
+                    image={useImage(require('../../assets/Background/tree_bg.png'))}
+                    width={width}
+                    height={height}
+                    fit="fill"
+                />
             </Canvas>
 
             {advertData &&

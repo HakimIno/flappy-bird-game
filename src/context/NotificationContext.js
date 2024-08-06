@@ -18,7 +18,7 @@ export const NotificationProvider = ({ children }) => {
             if (token) {
                 setExpoPushToken(token);
                 // Save token to Supabase
-                saveTokenToSupabase(token);
+                // saveTokenToSupabase(token);
             }
         });
 
