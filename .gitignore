@@ -9,6 +9,8 @@ node_modules
 # dependencies
 node_modules/
 
+brid-431802-32324235ad26.json
+
 # Expo
 .expo/
 dist/

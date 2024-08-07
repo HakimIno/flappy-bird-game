@@ -1,6 +1,7 @@
 {
   "cli": {
-    "version": ">= 5.3.0"
+    "version": ">= 5.3.0",
+    "appVersionSource": "remote"
   },
   "build": {
     "development": {
@@ -25,9 +26,28 @@
       "ios": {
         "simulator": false
       }
+    },
+    "store": {
+      "releaseChannel": "production",
+      "android": {
+        "buildType": "app-bundle"
+      },
+      "ios": {
+        "simulator": false,
+        "enterpriseProvisioning": "universal",
+        "buildType": "app-store"
+      }
     }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "android": {
+        "serviceAccountKeyPath": "./path/to/your-service-account-file.json"
+      },
+      "ios": {
+        "appleId": "your-apple-id@example.com",
+        "ascAppId": "your-app-store-connect-app-id"
+      }
+    }
   }
 }

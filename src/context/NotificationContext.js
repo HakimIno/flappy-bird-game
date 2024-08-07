@@ -58,23 +58,48 @@ export const NotificationProvider = ({ children }) => {
         return token;
     };
 
+    const tokenExistsInSupabase = async (token) => {
+        const { data, error } = await supabase
+            .from('tokens_push_notification')
+            .select('id')
+            .eq('token', token)
+            .single();
+
+        if (error) {
+            console.error('Error checking token in Supabase:', error);
+            return null;
+        }
+        return data;
+    };
+
     const saveTokenToSupabase = async (fullToken) => {
         const token = fullToken.match(/\[(.*?)\]/)[1];
+
+        // Check if token already exists in Supabase
+        const existingToken = await tokenExistsInSupabase(token);
+        if (existingToken) {
+            console.log('Token already exists in Supabase:', token);
+            return;
+        }
+
+        // Insert new token
         const { error: supabaseError } = await supabase
             .from('tokens_push_notification')
             .insert([{ token }]);
 
         if (supabaseError) {
             console.error('Error saving token to Supabase:', supabaseError);
+        } else {
+            console.log('Token successfully saved to Supabase:', token);
         }
     };
 
     const schedulePushNotification = async (title, body, data) => {
         await Notifications.scheduleNotificationAsync({
             content: {
-                title: title || "You've got mail! 📬",
-                body: body || 'Here is the notification body',
-                data: data || { data: 'goes here', test: { test1: 'more data' } },
+                title: title,
+                body: body,
+                data: data,
             },
             trigger: { seconds: 2 },
         });
