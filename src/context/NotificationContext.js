@@ -78,7 +78,6 @@ export const NotificationProvider = ({ children }) => {
         // Check if token already exists in Supabase
         const existingToken = await tokenExistsInSupabase(token);
         if (existingToken) {
-            console.log('Token already exists in Supabase:', token);
             return;
         }
 
