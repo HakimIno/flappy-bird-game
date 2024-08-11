@@ -100,8 +100,6 @@ export const NotificationProvider = ({ children }) => {
 
             if (supabaseError) {
                 throw new Error(supabaseError.message);
-            } else {
-                console.log('Token successfully saved to Supabase:', token);
             }
         } catch (error) {
             console.log('Error saving token to Supabase:', error);
