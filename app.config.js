@@ -1,10 +1,11 @@
 import 'dotenv/config';
+import { version } from './package.json'; // ดึงข้อมูล version จาก package.json
 
 export default {
   expo: {
     name: "W Baby Bird",
     slug: "FlappyBird",
-    version: "1.0.1",
+    version, // ใช้ version จาก package.json
     orientation: "portrait",
     icon: "./assets/bridLogo.png",
     userInterfaceStyle: "light",
@@ -17,6 +18,7 @@ export default {
     ios: {
       supportsTablet: true,
       bundleIdentifier: "com.kimsnow33.FlappyBird",
+      buildNumber: version, // ใช้ version เป็น build number
       config: {
         googleSignIn: {
           reservedClientId: "948343640889-pvbiikavlnvqske0bk82em328f8b8to0.apps.googleusercontent.com"
@@ -30,6 +32,7 @@ export default {
       },
       package: "com.kimsnow33.FlappyBird",
       googleServicesFile: "./android/app/google-services.json",
+      versionCode: parseInt(version.replace(/\./g, '')), // แปลง version เป็นเลขจำนวนเต็มสำหรับ versionCode
       permissions: [
         "RECEIVE_BOOT_COMPLETED",
         "VIBRATE",
@@ -68,6 +71,8 @@ export default {
     updates: {
       url: "https://u.expo.dev/33f0a9bc-ba74-4979-9de7-788147374794"
     },
-    runtimeVersion: "1.0.0"
+    runtimeVersion: {
+      policy: "nativeVersion" // ใช้ nativeVersion policy
+    }
   }
 };
