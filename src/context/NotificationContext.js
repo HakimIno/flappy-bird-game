@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import { supabase } from '../utils/supabase';
+import { logError } from '../utils/logError';
 
 const NotificationContext = createContext();
 
@@ -12,8 +13,8 @@ export const useNotifications = () => {
 Notifications.setNotificationHandler({
     handleNotification: async () => ({
         shouldShowAlert: true,
-        shouldPlaySound: false,
-        shouldSetBadge: false,
+        shouldPlaySound: true,
+        shouldSetBadge: true,
     }),
 });
 
@@ -22,20 +23,26 @@ export const NotificationProvider = ({ children }) => {
     const [notification, setNotification] = useState(null);
 
     useEffect(() => {
-        registerForPushNotificationsAsync().then(token => {
-            if (token) {
-                setExpoPushToken(token);
-                // Save token to Supabase
-                saveTokenToSupabase(token);
+        const initializeNotifications = async () => {
+            try {
+                const token = await registerForPushNotificationsAsync();
+                if (token) {
+                    setExpoPushToken(token);
+                    await saveTokenToSupabase(token);
+                }
+            } catch (error) {
+                logError('Failed to initialize notifications', error);
             }
-        });
+        };
+
+        initializeNotifications();
 
         const notificationListener = Notifications.addNotificationReceivedListener(notification => {
             setNotification(notification);
         });
 
         const responseListener = Notifications.addNotificationResponseReceivedListener(response => {
-            console.log(response);
+            console.log('Notification Response:', response);
         });
 
         return () => {
@@ -47,38 +54,51 @@ export const NotificationProvider = ({ children }) => {
     const registerForPushNotificationsAsync = async () => {
         let token;
 
-        if (Device.isDevice) {
-            const { status: existingStatus } = await Notifications.getPermissionsAsync();
-            let finalStatus = existingStatus;
-            if (existingStatus !== 'granted') {
-                const { status } = await Notifications.requestPermissionsAsync();
-                finalStatus = status;
+        try {
+            if (Device.isDevice) {
+                const { status: existingStatus } = await Notifications.getPermissionsAsync();
+                let finalStatus = existingStatus;
+
+                if (existingStatus !== 'granted') {
+                    const { status } = await Notifications.requestPermissionsAsync();
+                    finalStatus = status;
+                }
+
+                if (finalStatus !== 'granted') {
+                    alert('Failed to get push token for push notification!');
+                    logError('Permission not granted for push notifications');
+                    return null;
+                }
+
+                token = (await Notifications.getExpoPushTokenAsync()).data;
+                console.log('Expo Push Token:', token);
+            } else {
+                alert('Must use physical device for Push Notifications');
+                logError('Attempted to use push notifications on a non-physical device');
+                return null;
             }
-            if (finalStatus !== 'granted') {
-                alert('Failed to get push token for push notification!');
-                return;
-            }
-            token = (await Notifications.getExpoPushTokenAsync()).data;
-        } else {
-            alert('Must use physical device for Push Notifications');
+        } catch (error) {
+            logError('Error registering for push notifications', error);
         }
 
         return token;
     };
 
     const tokenExistsInSupabase = async (token) => {
-        const { data, error } = await supabase
-            .from('tokens_push_notification')
-            .select('id')
-            .eq('token', token);
+        try {
+            const { data, error } = await supabase
+                .from('tokens_push_notification')
+                .select('id')
+                .eq('token', token);
 
-        if (error) {
-            return null;
-        }
+            if (error) {
+                logError('Error checking token in Supabase', error);
+                return null;
+            }
 
-        if (data && data.length > 0) {
-            return data[0]; // return the first match
-        } else {
+            return data && data.length > 0 ? data[0] : null;
+        } catch (error) {
+            logError('Unexpected error checking token in Supabase', error);
             return null;
         }
     };
@@ -86,14 +106,14 @@ export const NotificationProvider = ({ children }) => {
     const saveTokenToSupabase = async (fullToken) => {
         try {
             const token = fullToken.match(/\[(.*?)\]/)[1];
+            console.log('Parsed token:', token);
 
-            // Check if token already exists in Supabase
             const existingToken = await tokenExistsInSupabase(token);
             if (existingToken) {
+                console.log('Token already exists in Supabase.');
                 return;
             }
 
-            // Insert new token
             const { error: supabaseError } = await supabase
                 .from('tokens_push_notification')
                 .insert([{ token }]);
@@ -101,20 +121,26 @@ export const NotificationProvider = ({ children }) => {
             if (supabaseError) {
                 throw new Error(supabaseError.message);
             }
+
+            console.log('Token saved successfully to Supabase.');
         } catch (error) {
-            console.log('Error saving token to Supabase:', error);
+            logError('Error saving token to Supabase', error);
         }
     };
 
     const schedulePushNotification = async (title, body, data) => {
-        await Notifications.scheduleNotificationAsync({
-            content: {
-                title: title,
-                body: body,
-                data: data,
-            },
-            trigger: { seconds: 2 },
-        });
+        try {
+            await Notifications.scheduleNotificationAsync({
+                content: {
+                    title: title,
+                    body: body,
+                    data: data,
+                },
+                trigger: { seconds: 2 },
+            });
+        } catch (error) {
+            logError('Error scheduling push notification', error);
+        }
     };
 
     return (

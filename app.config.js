@@ -5,9 +5,10 @@ export default {
   expo: {
     name: "W Baby Bird",
     slug: "FlappyBird",
-    version, // ใช้ version จาก package.json
+    version,
+    runtimeVersion: version,
     orientation: "portrait",
-    icon: "./assets/bridLogo.png",
+    icon: "./assets/logoApp.png",
     userInterfaceStyle: "light",
     splash: {
       image: "./assets/Background/tree_bg.png",
@@ -18,7 +19,7 @@ export default {
     ios: {
       supportsTablet: true,
       bundleIdentifier: "com.kimsnow33.FlappyBird",
-      buildNumber: version, // ใช้ version เป็น build number
+      buildNumber: version,
       config: {
         googleSignIn: {
           reservedClientId: "948343640889-pvbiikavlnvqske0bk82em328f8b8to0.apps.googleusercontent.com"
@@ -28,12 +29,11 @@ export default {
     },
     android: {
       adaptiveIcon: {
-        foregroundImage: "./assets/bridLogo.png",
+        foregroundImage: "./assets/logoApp.png",
         backgroundColor: "#ffffff"
       },
       package: "com.kimsnow33.FlappyBird",
       googleServicesFile: "./android/app/google-services.json",
-      versionCode: parseInt(version.replace(/\./g, '')), // แปลง version เป็นเลขจำนวนเต็มสำหรับ versionCode
       permissions: [
         "RECEIVE_BOOT_COMPLETED",
         "VIBRATE",
@@ -41,15 +41,16 @@ export default {
         "SYSTEM_ALERT_WINDOW",
         "INTERNET",
         "ACCESS_NETWORK_STATE",
-        "ACCESS_WIFI_STATE"
+        "ACCESS_WIFI_STATE",
+        "NOTIFICATIONS"
       ],
       scheme: "w-baby-bird-scheme",
     },
     web: {
-      favicon: "./assets/bridLogo.png"
+      favicon: "./assets/logoApp.png"
     },
     notification: {
-      icon: "./assets/bridLogo.png",
+      icon: "./assets/logoApp.png",
       color: "#ffffff",
       androidMode: "default",
       androidCollapsedTitle: "New Notification"
@@ -65,7 +66,7 @@ export default {
       [
         "expo-notifications",
         {
-          icon: "./assets/bridLogo.png",
+          icon: "./assets/logoApp.png",
           color: "#ffffff"
         }
       ]
@@ -73,8 +74,5 @@ export default {
     updates: {
       url: "https://u.expo.dev/33f0a9bc-ba74-4979-9de7-788147374794"
     },
-    runtimeVersion: {
-      policy: "nativeVersion" // ใช้ nativeVersion policy
-    }
   }
 };

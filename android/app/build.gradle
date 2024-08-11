@@ -88,7 +88,7 @@ android {
         applicationId 'com.kimsnow33.FlappyBird'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 110
+        versionCode 1
         versionName "1.1.0"
     }
     signingConfigs {

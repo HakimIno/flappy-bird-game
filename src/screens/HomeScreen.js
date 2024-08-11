@@ -15,9 +15,9 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 const HomeScreen = ({ navigation }) => {
     const { width, height } = useWindowDimensions();
 
-
     const [modalVisible, setModalVisible] = useState(false);
     const [advertData, setAdvertData] = useState(null)
+    const [baner, setBaner] = useState(null)
 
     async function fetchData() {
         let { data: advert, error } = await supabase
@@ -33,8 +33,24 @@ const HomeScreen = ({ navigation }) => {
         }
     }
 
+    async function fetchDataAnnounce() {
+        let { data: banerData, error } = await supabase
+            .from('announce')
+            .select('image_url')
+            .order('created_at', { ascending: false }) // ใช้คอลัมน์ที่เหมาะสมสำหรับการจัดเรียง
+            .limit(1)
+            .maybeSingle() // ใช้ maybeSingle() แทน single()
+
+        if (error) {
+            console.error('Error fetching data:', error);
+        } else {
+            setBaner(banerData)
+        }
+    }
+
     useEffect(() => {
         fetchData()
+        fetchDataAnnounce()
     }, [])
 
     const openModal = () => setModalVisible(true);
@@ -58,9 +74,9 @@ const HomeScreen = ({ navigation }) => {
             </Canvas>
 
             {advertData &&
-                <TouchableOpacity onPress={openModal} style={{ position: 'absolute', bottom: "4%", left: "2.5%", width: "95%", height: 60, borderEndWidth: 10, borderStartWidth: 10, borderRadius: 10, borderColor: "white" }}>
+                <TouchableOpacity onPress={openModal} style={{ position: 'absolute', bottom: "2%", left: "2.5%", width: "95%", height: 80, borderEndWidth: 10, borderStartWidth: 10, borderRadius: 10, borderColor: "white" }}>
                     <ImageRn source={{
-                        uri: "https://hedwig-cf.netmarble.com/forum-common/sololvnpc/slvcr_th/cb91f7ffd5b0492990f5666e106f0c37_1718792584436.gif"
+                        uri: baner?.image_url
                     }} style={{ width: "100%", height: "100%", resizeMode: 'cover', }} />
                 </TouchableOpacity>
             }
@@ -98,23 +114,25 @@ const HomeScreen = ({ navigation }) => {
                     >
                         <Ionicons name="menu" size={35} color="black" />
                     </TouchableOpacity>
-                    <TouchableOpacity
-                        style={{
-                            backgroundColor: 'white',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            borderRadius: 140,
-                            borderWidth: 1,
-                            borderColor: "#4B3C46",
-                            marginRight: "40%"
 
-                        }}
-                    // onPress={async () => {
-                    //     await schedulePushNotification();
-                    // }}
-                    >
-                        <ImageRn source={require("../../assets/WLogo.png")} style={{ width: 60, height: 60, resizeMode: 'cover' }} />
-                    </TouchableOpacity>
+                </View>
+
+                <View
+                    style={{
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        borderRadius: 10,
+                        borderColor: "#4B3C46",
+                        position: 'absolute',
+                        top: "55%",
+                        left: "42%",
+
+                    }}
+                // onPress={async () => {
+                //     await schedulePushNotification();
+                // }}
+                >
+                    <ImageRn source={require("../../assets/WLogo.png")} style={{ width: 100, height: 30, resizeMode: 'cover', transform: [{ rotate: '34deg' }] }} />
                 </View>
 
 
