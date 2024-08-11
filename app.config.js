@@ -4,7 +4,7 @@ export default {
   expo: {
     name: "W Baby Bird",
     slug: "FlappyBird",
-    version: "1.0.0",
+    version: "1.0.1",
     orientation: "portrait",
     icon: "./assets/bridLogo.png",
     userInterfaceStyle: "light",
