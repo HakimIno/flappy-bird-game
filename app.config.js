@@ -23,7 +23,8 @@ export default {
         googleSignIn: {
           reservedClientId: "948343640889-pvbiikavlnvqske0bk82em328f8b8to0.apps.googleusercontent.com"
         }
-      }
+      },
+      scheme: "w-baby-bird-scheme",
     },
     android: {
       adaptiveIcon: {
@@ -41,7 +42,8 @@ export default {
         "INTERNET",
         "ACCESS_NETWORK_STATE",
         "ACCESS_WIFI_STATE"
-      ]
+      ],
+      scheme: "w-baby-bird-scheme",
     },
     web: {
       favicon: "./assets/bridLogo.png"
