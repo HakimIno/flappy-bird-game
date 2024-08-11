@@ -6,43 +6,31 @@
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
-    },
-    "development-simulator": {
-      "developmentClient": true,
       "distribution": "internal",
-      "ios": {
-        "simulator": true
-      }
-    },
-    "preview": {
-      "distribution": "internal"
+      "env": {
+        "EXPO_PUBLIC_SUPABASE_URL": "https://iqbrdzgmpesmhhgvrgij.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlxYnJkemdtcGVzbWhoZ3ZyZ2lqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjI0OTYzNDMsImV4cCI6MjAzODA3MjM0M30.NWbr2aQTSgGoWPAGld1-Jdg-YZOyi2DU1gx-NKLH7LM"
+      },
+      "channel": "development"
     },
     "production": {
-      "releaseChannel": "production",
+      "channel": "production",
       "android": {
         "buildType": "apk"
       },
       "ios": {
         "simulator": false
-      }
-    },
-    "store": {
-      "releaseChannel": "production",
-      "android": {
-        "buildType": "app-bundle"
       },
-      "ios": {
-        "simulator": false,
-        "enterpriseProvisioning": "universal",
-        "buildType": "app-store"
+      "env": {
+        "EXPO_PUBLIC_SUPABASE_URL": "https://iqbrdzgmpesmhhgvrgij.supabase.co",
+        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlxYnJkemdtcGVzbWhoZ3ZyZ2lqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjI0OTYzNDMsImV4cCI6MjAzODA3MjM0M30.NWbr2aQTSgGoWPAGld1-Jdg-YZOyi2DU1gx-NKLH7LM"
       }
     }
   },
   "submit": {
     "production": {
       "android": {
-        "serviceAccountKeyPath": "./path/to/your-service-account-file.json"
+        "serviceAccountKeyPath": "./brid-431802-32324235ad26.json"
       },
       "ios": {
         "appleId": "your-apple-id@example.com",

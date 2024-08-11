@@ -1,4 +1,4 @@
-import { Platform, TouchableOpacity, useWindowDimensions, View, Text as TextRn } from 'react-native';
+import { Platform, TouchableOpacity, useWindowDimensions, View, Text as TextRn, Image as ImageRn } from 'react-native';
 import {
     Canvas,
     useImage,
@@ -286,10 +286,10 @@ const GameScreen = ({ navigation }) => {
     const r = size * 0.1;
     const rrct = {
         rect: { x: width / 2 - 150, y: height / 2 - 100, width: size, height: 100 },
-        topLeft: { x: 10, y: r },
-        topRight: { x: r, y: 10 },
-        bottomRight: { x: r, y: 10 },
-        bottomLeft: { x: r, y: 10 },
+        topLeft: { x: r, y: r },
+        topRight: { x: r, y: r },
+        bottomRight: { x: r, y: r },
+        bottomLeft: { x: r, y: r },
 
     };
 
@@ -385,6 +385,8 @@ const GameScreen = ({ navigation }) => {
             {gameOverState && (
                 <>
 
+                    <ImageRn source={require('../../assets/bridLogo.png')} style={{ width: "100%", height: 150, resizeMode: 'contain', position: 'absolute', top: "15%", left: "0%" }} />
+                    <ImageRn source={require("../../assets/WLogo.png")} style={{ width: 60, height: 60, resizeMode: 'contain', position: 'absolute', top: "40%", left: "18%" }} />
 
                     <View style={{ position: 'absolute', top: "44%", left: "23%" }}>
                         <TextRn style={{ fontFamily: "PressStart2P_400Regular", fontSize: 20, color: "#674A2C" }}>

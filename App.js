@@ -9,11 +9,13 @@ import { Provider } from 'react-redux';
 import store from './src/redux/store';
 import MenuScreen from './src/screens/MenuScreen';
 import { NotificationProvider } from './src/context/NotificationContext';
+// import registerNNPushToken from 'native-notify';
 
 const Stack = createNativeStackNavigator();
 
 
 const App = () => {
+  // registerNNPushToken(22901, 'ZCqNb9xyQiAaMpesX8TAUo');
   let [fontsLoaded] = useFonts({
     PressStart2P_400Regular,
     Kanit_500Medium,

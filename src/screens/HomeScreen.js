@@ -66,7 +66,7 @@ const HomeScreen = ({ navigation }) => {
             }
             {/* Button should be outside the Canvas */}
             <View style={styles.buttonContainer}>
-                <ImageRn source={require('../../assets/sprites/pngegg.png')} style={{ width: "80%", height: 100 }} />
+                <ImageRn source={require('../../assets/bridLogo.png')} style={{ width: "100%", height: 200, resizeMode: 'contain' }} />
                 <TouchableOpacity
                     style={{
                         backgroundColor: 'white',
@@ -103,7 +103,6 @@ const HomeScreen = ({ navigation }) => {
                             backgroundColor: 'white',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            padding: 15,
                             borderRadius: 140,
                             borderWidth: 1,
                             borderColor: "#4B3C46",
@@ -114,7 +113,7 @@ const HomeScreen = ({ navigation }) => {
                     //     await schedulePushNotification();
                     // }}
                     >
-                        <Ionicons name="volume-medium" size={35} color="black" />
+                        <ImageRn source={require("../../assets/WLogo.png")} style={{ width: 60, height: 60, resizeMode: 'cover' }} />
                     </TouchableOpacity>
                 </View>
 

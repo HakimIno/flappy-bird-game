@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "319057516242",
+    "project_id": "game-d6bee",
+    "storage_bucket": "game-d6bee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319057516242:android:01c30ecb9ccc8d7f1c7f0b",
+        "android_client_info": {
+          "package_name": "com.kimsnow33.FlappyBird"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkaikt87dP9Adbt43N68pqnrzVw7RyKT0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

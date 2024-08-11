@@ -9,6 +9,14 @@ export const useNotifications = () => {
     return useContext(NotificationContext);
 };
 
+Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: false,
+        shouldSetBadge: false,
+    }),
+});
+
 export const NotificationProvider = ({ children }) => {
     const [expoPushToken, setExpoPushToken] = useState('');
     const [notification, setNotification] = useState(null);
@@ -62,34 +70,41 @@ export const NotificationProvider = ({ children }) => {
         const { data, error } = await supabase
             .from('tokens_push_notification')
             .select('id')
-            .eq('token', token)
-            .single();
+            .eq('token', token);
 
         if (error) {
-            console.error('Error checking token in Supabase:', error);
             return null;
         }
-        return data;
+
+        if (data && data.length > 0) {
+            return data[0]; // return the first match
+        } else {
+            return null;
+        }
     };
 
     const saveTokenToSupabase = async (fullToken) => {
-        const token = fullToken.match(/\[(.*?)\]/)[1];
+        try {
+            const token = fullToken.match(/\[(.*?)\]/)[1];
 
-        // Check if token already exists in Supabase
-        const existingToken = await tokenExistsInSupabase(token);
-        if (existingToken) {
-            return;
-        }
+            // Check if token already exists in Supabase
+            const existingToken = await tokenExistsInSupabase(token);
+            if (existingToken) {
+                return;
+            }
 
-        // Insert new token
-        const { error: supabaseError } = await supabase
-            .from('tokens_push_notification')
-            .insert([{ token }]);
+            // Insert new token
+            const { error: supabaseError } = await supabase
+                .from('tokens_push_notification')
+                .insert([{ token }]);
 
-        if (supabaseError) {
-            console.error('Error saving token to Supabase:', supabaseError);
-        } else {
-            console.log('Token successfully saved to Supabase:', token);
+            if (supabaseError) {
+                throw new Error(supabaseError.message);
+            } else {
+                console.log('Token successfully saved to Supabase:', token);
+            }
+        } catch (error) {
+            console.log('Error saving token to Supabase:', error);
         }
     };
 
