@@ -75,9 +75,11 @@ const HomeScreen = ({ navigation }) => {
 
             {advertData &&
                 <TouchableOpacity onPress={openModal} style={{ position: 'absolute', bottom: "2%", left: "2.5%", width: "95%", height: 80, borderEndWidth: 10, borderStartWidth: 10, borderRadius: 10, borderColor: "white" }}>
-                    <ImageRn source={{
-                        uri: baner?.image_url
-                    }} style={{ width: "100%", height: "100%", resizeMode: 'cover', }} />
+                    {baner?.image_url && (
+                        <ImageRn source={{
+                            uri: baner?.image_url
+                        }} style={{ width: "100%", height: "100%", resizeMode: 'cover', }} />
+                    )}
                 </TouchableOpacity>
             }
             {/* Button should be outside the Canvas */}

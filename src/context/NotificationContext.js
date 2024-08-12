@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
+import Constants from 'expo-constants';
 import { supabase } from '../utils/supabase';
 import { logError } from '../utils/logError';
 
@@ -70,7 +71,12 @@ export const NotificationProvider = ({ children }) => {
                     return null;
                 }
 
-                token = (await Notifications.getExpoPushTokenAsync()).data;
+                const experienceId = `@${Constants.expoConfig?.owner}/${Constants.expoConfig?.slug}`;
+
+                console.log("experienceId", experienceId);
+
+
+                token = (await Notifications.getExpoPushTokenAsync({ experienceId })).data;
                 console.log('Expo Push Token:', token);
             } else {
                 alert('Must use physical device for Push Notifications');

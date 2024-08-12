@@ -5,6 +5,7 @@ export default {
   expo: {
     name: "W Baby Bird",
     slug: "FlappyBird",
+    owner: "kimsnow33",
     version,
     runtimeVersion: version,
     orientation: "portrait",
