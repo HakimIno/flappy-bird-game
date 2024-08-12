@@ -71,13 +71,10 @@ export const NotificationProvider = ({ children }) => {
                     return null;
                 }
 
-                const experienceId = `@${Constants.expoConfig?.owner}/${Constants.expoConfig?.slug}`;
+                token = (await Notifications.getExpoPushTokenAsync({
+                    projectId: Constants.expoConfig.extra.eas.projectId,
+                })).data;
 
-                console.log("experienceId", experienceId);
-
-
-                token = (await Notifications.getExpoPushTokenAsync({ experienceId })).data;
-                console.log('Expo Push Token:', token);
             } else {
                 alert('Must use physical device for Push Notifications');
                 logError('Attempted to use push notifications on a non-physical device');
