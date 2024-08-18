@@ -9,8 +9,6 @@ node_modules
 # dependencies
 node_modules/
 
-brid-431802-32324235ad26.json
-
 # Expo
 .expo/
 dist/
@@ -42,4 +40,5 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
+android/app/w-baby-bird-79fa056be233.json
 # @end expo-cli

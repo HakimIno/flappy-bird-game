@@ -32,7 +32,7 @@
   "submit": {
     "production": {
       "android": {
-        "serviceAccountKeyPath": "./brid-431802-32324235ad26.json"
+        "serviceAccountKeyPath": "./android/app/w-baby-bird-79fa056be233.json"
       },
       "ios": {
         "appleId": "your-apple-id@example.com",
