@@ -385,7 +385,6 @@ const GameScreen = ({ navigation }) => {
             {gameOverState && (
                 <>
 
-                    <ImageRn source={require('../../assets/bridLogo.png')} style={{ width: "100%", height: 150, resizeMode: 'contain', position: 'absolute', top: "15%", left: "0%" }} />
                     <ImageRn source={require("../../assets/WLogo.png")} style={{ width: 60, height: 60, resizeMode: 'contain', position: 'absolute', top: "40%", left: "18%" }} />
 
                     <View style={{ position: 'absolute', top: "44%", left: "23%" }}>

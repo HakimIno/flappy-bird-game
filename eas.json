@@ -16,10 +16,12 @@
     "production": {
       "channel": "production",
       "android": {
-        "buildType": "apk"
+        "buildType": "apk",
+        "resourceClass": "medium"
       },
       "ios": {
-        "simulator": false
+        "simulator": false,
+        "resourceClass": "large"
       },
       "env": {
         "EXPO_PUBLIC_SUPABASE_URL": "https://iqbrdzgmpesmhhgvrgij.supabase.co",

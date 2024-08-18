@@ -9,7 +9,7 @@ export default {
     version,
     runtimeVersion: version,
     orientation: "portrait",
-    icon: "./assets/logoApp.png",
+    icon: "./assets/LogoWBabyBird.png",
     userInterfaceStyle: "light",
     splash: {
       image: "./assets/Background/tree_bg.png",
@@ -30,7 +30,7 @@ export default {
     },
     android: {
       adaptiveIcon: {
-        foregroundImage: "./assets/logoApp.png",
+        foregroundImage: "./assets/LogoWBabyBird.png",
         backgroundColor: "#ffffff"
       },
       package: "com.kimsnow33.FlappyBird",
@@ -48,10 +48,10 @@ export default {
       scheme: "w-baby-bird-scheme",
     },
     web: {
-      favicon: "./assets/logoApp.png"
+      favicon: "./assets/LogoWBabyBird.png"
     },
     notification: {
-      icon: "./assets/logoApp.png",
+      icon: "./assets/LogoWBabyBird.png",
       color: "#ffffff",
       androidMode: "default",
       androidCollapsedTitle: "New Notification"
@@ -67,7 +67,7 @@ export default {
       [
         "expo-notifications",
         {
-          icon: "./assets/logoApp.png",
+          icon: "./assets/LogoWBabyBird.png",
           color: "#ffffff"
         }
       ]

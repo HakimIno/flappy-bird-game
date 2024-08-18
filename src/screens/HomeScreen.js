@@ -84,13 +84,12 @@ const HomeScreen = ({ navigation }) => {
             }
             {/* Button should be outside the Canvas */}
             <View style={styles.buttonContainer}>
-                <ImageRn source={require('../../assets/bridLogo.png')} style={{ width: "100%", height: 200, resizeMode: 'contain' }} />
                 <TouchableOpacity
                     style={{
                         backgroundColor: 'white',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        padding: 15,
+                        padding: 20,
                         borderRadius: 140,
                         borderWidth: 2,
                         borderColor: "#4B3C46",
@@ -98,7 +97,7 @@ const HomeScreen = ({ navigation }) => {
                     }}
                     onPress={() => navigation.navigate("Game")}
                 >
-                    <Ionicons name="play" size={80} color="black" style={{ marginLeft: 10 }} />
+                    <Ionicons name="play" size={100} color="black" style={{ marginLeft: 10 }} />
                 </TouchableOpacity>
 
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', width: '100%', marginLeft: "40%" }}>
@@ -126,15 +125,15 @@ const HomeScreen = ({ navigation }) => {
                         borderRadius: 10,
                         borderColor: "#4B3C46",
                         position: 'absolute',
-                        top: "55%",
-                        left: "42%",
+                        top: "23%",
+                        left: "45%",
 
                     }}
                 // onPress={async () => {
                 //     await schedulePushNotification();
                 // }}
                 >
-                    <ImageRn source={require("../../assets/WLogo.png")} style={{ width: 100, height: 30, resizeMode: 'cover', transform: [{ rotate: '34deg' }] }} />
+                    <ImageRn source={require('../../assets/Logo_W_Baby_Bird.png')} style={{ width: 30, height: 30, resizeMode: 'contain', transform: [{ rotate: '0deg' }] }} />
                 </View>
 
 
