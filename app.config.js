@@ -29,6 +29,7 @@ export default {
       scheme: "w-baby-bird-scheme",
     },
     android: {
+      versionCode: 2,
       adaptiveIcon: {
         foregroundImage: "./assets/LogoWBabyBird.png",
         backgroundColor: "#ffffff"
