@@ -17,8 +17,7 @@
       "channel": "production",
       "android": {
         "buildType": "app-bundle",
-        "resourceClass": "medium",
-        "versionCode": 2
+        "resourceClass": "medium"
       },
       "ios": {
         "simulator": false,
