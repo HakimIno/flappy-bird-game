@@ -15,12 +15,10 @@ const MenuScreen = ({ navigation }) => {
     const dispatch = useDispatch()
 
     const birdList = [
-        { source: require('../../assets/brid/blue.png'), title: 'Blue Bird' },
-        { source: require('../../assets/brid/brow.png'), title: 'Brown Bird' },
-        { source: require('../../assets/brid/white.png'), title: 'White Bird' },
-        { source: require('../../assets/brid/yellow.png'), title: 'Yellow Bird' },
-        { source: require('../../assets/brid/green.png'), title: 'Green Bird' },
-        { source: require('../../assets/brid/pink.png'), title: 'Pink Bird' },
+        { source: require('../../assets/bridv2/blue.png'), title: 'Blue Bird' },
+        { source: require('../../assets/bridv2/brow.png'), title: 'Brown Bird' },
+        { source: require('../../assets/bridv2/white.png'), title: 'White Bird' },
+        { source: require('../../assets/bridv2/yellow.png'), title: 'Yellow Bird' },
     ];
 
     const handlePress = (item, index) => {
@@ -36,6 +34,7 @@ const MenuScreen = ({ navigation }) => {
     const backgroundList = [
         require('../../assets/Background/tree_bg.png'),
         require('../../assets/sprites/background-day.png'),
+        // require('../../assets/Background/boran.png'),
         require('../../assets/sprites/background-night.png'),
         require('../../assets/Background/Background1.png'),
         require('../../assets/Background/Background2.png'),
@@ -43,7 +42,7 @@ const MenuScreen = ({ navigation }) => {
         require('../../assets/Background/Background7.png'),
         require('../../assets/Background/Background8.png'),
         require('../../assets/Background/Background9.png'),
-        require('../../assets/Background/Background9.png'),
+        require('../../assets/Background/nigt.png'),
     ]
 
     return (

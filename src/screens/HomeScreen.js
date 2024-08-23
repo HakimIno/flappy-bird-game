@@ -16,7 +16,7 @@ const HomeScreen = ({ navigation }) => {
     const { width, height } = useWindowDimensions();
 
     const [modalVisible, setModalVisible] = useState(false);
-    const [advertData, setAdvertData] = useState(null)
+    const [advertData, setAdvertData] = useState([])
     const [baner, setBaner] = useState(null)
 
     async function fetchData() {
@@ -28,7 +28,6 @@ const HomeScreen = ({ navigation }) => {
         if (error) {
             console.error('Error fetching data:', error);
         } else {
-            // @ts-ignore
             setAdvertData(advert)
         }
     }
@@ -53,7 +52,11 @@ const HomeScreen = ({ navigation }) => {
         fetchDataAnnounce()
     }, [])
 
-    const openModal = () => setModalVisible(true);
+    const openModal = () => {
+        if (advertData.length > 0) {
+            setModalVisible(true)
+        }
+    };
     const closeModal = () => setModalVisible(false);
 
     const { top } = useSafeAreaInsets()
@@ -73,7 +76,7 @@ const HomeScreen = ({ navigation }) => {
                 />
             </Canvas>
 
-            {advertData &&
+            {advertData.length > 0 &&
                 <TouchableOpacity onPress={openModal} style={{ position: 'absolute', bottom: "2%", left: "2.5%", width: "95%", height: 80, borderEndWidth: 10, borderStartWidth: 10, borderRadius: 10, borderColor: "white" }}>
                     {baner?.image_url && (
                         <ImageRn source={{

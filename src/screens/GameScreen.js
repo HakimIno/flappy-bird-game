@@ -87,10 +87,10 @@ const GameScreen = ({ navigation }) => {
     const currentMapImage = useSelector((state) => state.images.currentMapImage);
 
     const bg = useImage(currentMapImage ? currentMapImage : require('../../assets/sprites/background-day.png'));
-    const bird = useImage(currentBirdImage ? currentBirdImage : require('../../assets/brid/blue.png'))
+    const bird = useImage(currentBirdImage ? currentBirdImage : require('../../assets/bridv2/blue.png'))
     const pipeBottom = useImage(require('../../assets/sprites/pipe-green.png'));
     const pipeTop = useImage(require('../../assets/sprites/pipe-green-top.png'));
-    const base = useImage(require('../../assets/sprites/base.png'));
+    const base = useImage(require('../../assets/ground.png'));
 
     const gameOver = useSharedValue(false);
     const pipeX = useSharedValue(width);
@@ -297,11 +297,7 @@ const GameScreen = ({ navigation }) => {
 
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
-            <StatusBar
-                barStyle="light-content"
-                backgroundColor="#4DC1CB"
-                translucent
-            />
+
             <GestureDetector gesture={gesture}>
                 <Canvas style={{ width, height, marginTop: top }}>
                     {/* BG */}
@@ -335,7 +331,7 @@ const GameScreen = ({ navigation }) => {
 
                     {/* Bird */}
                     <Group transform={birdTransform} origin={birdOrigin}>
-                        <Image image={bird} y={birdY} x={birdX} width={64} height={48} />
+                        <Image image={bird} y={birdY} x={birdX} width={80} height={70} />
                     </Group>
 
                     {/* Sim */}
