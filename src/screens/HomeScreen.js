@@ -62,14 +62,10 @@ const HomeScreen = ({ navigation }) => {
     const { top } = useSafeAreaInsets()
     return (
         <View style={{ width, height }}>
-            <StatusBar
-                barStyle="light-content"
-                backgroundColor="#74D5D8"
-                translucent
-            />
-            <Canvas style={{ width, height, marginTop: top }}>
+            <StatusBar style="auto" />
+            <Canvas style={{ width, height }}>
                 <Image
-                    image={useImage(require('../../assets/Background/tree_bg.png'))}
+                    image={useImage(require('../../assets/Background/nigt.png'))}
                     width={width}
                     height={height}
                     fit="fill"

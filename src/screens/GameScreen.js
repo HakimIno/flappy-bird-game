@@ -4,11 +4,7 @@ import {
     useImage,
     Image,
     Group,
-    Text,
     matchFont,
-    Rect,
-    Path,
-    Skia,
     RoundedRect,
 
 } from '@shopify/react-native-skia';
@@ -79,14 +75,10 @@ const GameScreen = ({ navigation }) => {
     const { width, height } = useWindowDimensions();
     const [score, setScore] = useState(0);
 
-
-
-    // @ts-ignore
     const currentBirdImage = useSelector((state) => state.images.currentBirdImage);
-    // @ts-ignore
     const currentMapImage = useSelector((state) => state.images.currentMapImage);
 
-    const bg = useImage(currentMapImage ? currentMapImage : require('../../assets/sprites/background-day.png'));
+    const bg = useImage(currentMapImage ? currentMapImage : require('../../assets/Background/tree_bg.png'));
     const bird = useImage(currentBirdImage ? currentBirdImage : require('../../assets/bridv2/blue.png'))
     const pipeBottom = useImage(require('../../assets/sprites/pipe-green.png'));
     const pipeTop = useImage(require('../../assets/sprites/pipe-green-top.png'));
@@ -293,13 +285,12 @@ const GameScreen = ({ navigation }) => {
 
     };
 
-    const { top } = useSafeAreaInsets()
 
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
 
             <GestureDetector gesture={gesture}>
-                <Canvas style={{ width, height, marginTop: top }}>
+                <Canvas style={{ width, height, }}>
                     {/* BG */}
                     <Image image={bg} width={width} height={height} fit={'cover'} />
 
@@ -381,9 +372,9 @@ const GameScreen = ({ navigation }) => {
             {gameOverState && (
                 <>
 
-                    <ImageRn source={require("../../assets/WLogo.png")} style={{ width: 60, height: 60, resizeMode: 'contain', position: 'absolute', top: "40%", left: "18%" }} />
+                    <ImageRn source={require("../../assets/WLogo.png")} style={{ width: 60, height: 60, resizeMode: 'contain', position: 'absolute', top: "37%", left: "18%" }} />
 
-                    <View style={{ position: 'absolute', top: "44%", left: "23%" }}>
+                    <View style={{ position: 'absolute', top: "41%", left: "23%" }}>
                         <TextRn style={{ fontFamily: "PressStart2P_400Regular", fontSize: 20, color: "#674A2C" }}>
                             score: {score.toString()}
                         </TextRn>

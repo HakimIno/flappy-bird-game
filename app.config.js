@@ -12,7 +12,7 @@ export default {
     icon: "./assets/LogoWBabyBird.png",
     userInterfaceStyle: "light",
     splash: {
-      image: "./assets/Background/tree_bg.png",
+      image: "./assets/Background/nigt.png",
       resizeMode: "cover",
       backgroundColor: "#ffffff"
     },

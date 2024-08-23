@@ -33,15 +33,15 @@ const MenuScreen = ({ navigation }) => {
 
     const backgroundList = [
         require('../../assets/Background/tree_bg.png'),
-        require('../../assets/sprites/background-day.png'),
+        // require('../../assets/sprites/background-day.png'),
         // require('../../assets/Background/boran.png'),
-        require('../../assets/sprites/background-night.png'),
-        require('../../assets/Background/Background1.png'),
-        require('../../assets/Background/Background2.png'),
-        require('../../assets/Background/Background4.png'),
-        require('../../assets/Background/Background7.png'),
-        require('../../assets/Background/Background8.png'),
-        require('../../assets/Background/Background9.png'),
+        // require('../../assets/sprites/background-night.png'),
+        // require('../../assets/Background/Background1.png'),
+        // require('../../assets/Background/Background2.png'),
+        // require('../../assets/Background/Background4.png'),
+        // require('../../assets/Background/Background7.png'),
+        // require('../../assets/Background/Background8.png'),
+        // require('../../assets/Background/Background9.png'),
         require('../../assets/Background/nigt.png'),
     ]
 
@@ -49,7 +49,7 @@ const MenuScreen = ({ navigation }) => {
         <View style={{ width, height }}>
             <StatusBar style="auto" />
             <Canvas style={{ width, height }}>
-                <Image image={useImage(require('../../assets/Background/tree_bg.png'))} width={width} height={height} fit={'cover'} />
+                <Image image={useImage(require('../../assets/Background/nigt.png'))} width={width} height={height} fit={'cover'} />
             </Canvas>
 
             <TouchableOpacity onPress={() => navigation.goBack()} style={{ backgroundColor: 'white', padding: 10, position: 'absolute', top: "5%", left: 10, borderRadius: 100 }}>
