@@ -99,7 +99,8 @@ const HomeScreen = ({ navigation }) => {
                     <Ionicons name="play" size={100} color="black" style={{ marginLeft: 10 }} />
                 </TouchableOpacity>
 
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', width: '100%', marginLeft: "40%" }}>
+
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', width: '80%', marginLeft: "0%" }}>
                     <TouchableOpacity
                         style={{
                             backgroundColor: 'white',
@@ -112,7 +113,22 @@ const HomeScreen = ({ navigation }) => {
                         }}
                         onPress={() => navigation.navigate("Menu")}
                     >
-                        <Ionicons name="menu" size={35} color="black" />
+                        <Ionicons name="storefront-outline" size={30} color="black" />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={{
+                            backgroundColor: 'white',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            padding: 15,
+                            borderRadius: 140,
+                            borderWidth: 1,
+                            borderColor: "#4B3C46",
+                        }}
+                        onPress={() => navigation.navigate("Legal")}
+                    >
+                        <Ionicons name="document-text-outline" size={30} color="black" />
                     </TouchableOpacity>
 
                 </View>
@@ -124,7 +140,7 @@ const HomeScreen = ({ navigation }) => {
                         borderRadius: 10,
                         borderColor: "#4B3C46",
                         position: 'absolute',
-                        top: "23%",
+                        top: "24%",
                         left: "45%",
 
                     }}
@@ -180,7 +196,7 @@ const styles = StyleSheet.create({
     buttonContainer: {
         position: 'absolute', // Use absolute positioning to place it over the Canvas
         width: '100%',
-        bottom: "40%",
+        bottom: "30%",
         justifyContent: 'center',
         alignItems: 'center',
         gap: 30

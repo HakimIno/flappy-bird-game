@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import store from './src/redux/store';
 import MenuScreen from './src/screens/MenuScreen';
 import { NotificationProvider } from './src/context/NotificationContext';
+import LegalScreen from './src/screens/LegalScreen';
 // import registerNNPushToken from 'native-notify';
 
 const Stack = createNativeStackNavigator();
@@ -43,6 +44,10 @@ const App = () => {
             <Stack.Screen
               name="Menu"
               component={MenuScreen}
+            />
+            <Stack.Screen
+              name='Legal'
+              component={LegalScreen}
             />
           </Stack.Navigator>
         </NavigationContainer>
