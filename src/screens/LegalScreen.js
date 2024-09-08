@@ -25,9 +25,9 @@ const LegalScreen = ({ navigation }) => {
                 <Entypo name="chevron-left" size={30} color="black" />
             </TouchableOpacity>
 
-            <View style={{ backgroundColor: 'rgba(255,255,255,0.5)', borderRadius: 20, borderWidth: 1, width: width * 0.9, height: height * 0.7, position: 'absolute', top: "15%", left: "5%" }}>
+            <View style={{ backgroundColor: 'rgba(255,255,255,0.5)', borderRadius: 20, borderWidth: 1, width: width * 0.9, height: height * 0.75, position: 'absolute', top: "15%", left: "5%" }}>
 
-                <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 10, marginTop: 20 }}>
+                <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 5, marginTop: 20 }}>
                     <Pressable
                         style={{
                             backgroundColor: activeTab === 0 ? '#FFF4DC' : 'white',
@@ -40,7 +40,7 @@ const LegalScreen = ({ navigation }) => {
                         }}
                         onPress={() => setActiveTab(0)}
                     >
-                        <Text style={{ fontFamily: 'PressStart2P_400Regular', marginTop: 8, color: "#674A2C", fontSize: 7 }}>Privacy Policy</Text>
+                        <Text style={{ color: "#674A2C", paddingVertical: 2, paddingHorizontal: 8 }}>Privacy Policy</Text>
                     </Pressable>
 
                     <Pressable
@@ -55,37 +55,46 @@ const LegalScreen = ({ navigation }) => {
                         }}
                         onPress={() => setActiveTab(1)}
                     >
-                        <Text style={{ fontFamily: 'PressStart2P_400Regular', marginTop: 8, color: "#674A2C", fontSize: 7 }}>Terms of Service</Text>
+                        <Text style={{ color: "#674A2C", paddingVertical: 2, paddingHorizontal: 8 }}>Terms of Service</Text>
                     </Pressable>
                 </View>
 
 
-                {activeTab === 0 ? (
-                    <ScrollView style={styles.scrollView} overScrollMode="never" showsVerticalScrollIndicator={false}>
-                        <View style={{
+                <View style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+
+                }}>
+                    <View />
+                    <TouchableOpacity
+                        style={{
                             flexDirection: 'row',
                             alignItems: 'center',
-                            justifyContent: 'space-between',
+                            justifyContent: 'flex-end',
+                            marginHorizontal: 25,
+                            marginVertical: 7,
+                            padding: 8,
+                            paddingHorizontal: 14,
+                            backgroundColor: "white",
+                            borderRadius: 30,
+                            gap: 5,
+                        }}
+                        onPress={toggleLanguage}
+                    >
+                        <Ionicons name="language" size={16} color="black" />
+                        <Text style={{
+                            fontSize: 11,
+                            color: '#555',
+                            textAlign: 'justify',
+                            fontWeight: 'bold'
+                        }}>{language === 'th' ? 'English' : 'ไทย'}</Text>
+                    </TouchableOpacity>
+                </View>
 
-                        }}>
-                            <View />
-                            <TouchableOpacity
-                                style={{
-                                    flexDirection: 'row',
-                                    alignItems: 'center',
-                                    justifyContent: 'flex-end',
-                                    marginHorizontal: 10,
-                                    marginBottom: 5,
-                                    padding: 6,
-                                    backgroundColor: "white",
-                                    borderRadius: 10
-                                }}
-                                onPress={toggleLanguage}
-                            >
-                                <Ionicons name="language" size={16} color="black" />
-                                <Text style={styles.content}>{language === 'th' ? 'English' : 'ไทย'}</Text>
-                            </TouchableOpacity>
-                        </View>
+                {activeTab === 0 ? (
+                    <ScrollView style={styles.scrollView} overScrollMode="never" showsVerticalScrollIndicator={false}>
+
 
                         <View style={styles.container}>
                             {language === 'th' ? (
@@ -167,30 +176,6 @@ const LegalScreen = ({ navigation }) => {
                     </ScrollView>
                 ) : (
                     <ScrollView style={styles.scrollView} overScrollMode="never" showsVerticalScrollIndicator={false}>
-                        <View style={{
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-
-                        }}>
-                            <View />
-                            <TouchableOpacity
-                                style={{
-                                    flexDirection: 'row',
-                                    alignItems: 'center',
-                                    justifyContent: 'flex-end',
-                                    marginHorizontal: 10,
-                                    marginBottom: 5,
-                                    padding: 6,
-                                    backgroundColor: "white",
-                                    borderRadius: 10
-                                }}
-                                onPress={toggleLanguage}
-                            >
-                                <Ionicons name="language" size={16} color="black" />
-                                <Text style={styles.content}>{language === 'th' ? 'English' : 'ไทย'}</Text>
-                            </TouchableOpacity>
-                        </View>
 
                         <View style={styles.container}>
                             {language === 'th' ? (
@@ -281,14 +266,17 @@ export default LegalScreen
 const styles = StyleSheet.create({
     scrollView: {
         flex: 1,
-        margin: 10,
+        marginTop: 0,
+        marginHorizontal: 20,
+        marginBottom: 25,
+        backgroundColor: '#f9f9f9',
+        borderRadius: 10,
 
     },
     container: {
-        padding: 20,
-        backgroundColor: '#f9f9f9',
-        borderRadius: 10,
-        paddingHorizontal: 30
+        paddingBottom: 30,
+        paddingHorizontal: 30,
+        paddingTop: 15
     },
     title: {
         fontSize: 14,
@@ -313,6 +301,6 @@ const styles = StyleSheet.create({
         fontSize: 10,
         lineHeight: 10 * 1.4,
         color: '#555',
-        textAlign: 'justify',
+        textAlign: 'auto',
     },
 })

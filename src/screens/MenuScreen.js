@@ -105,9 +105,9 @@ const MenuScreen = ({ navigation }) => {
                                         flexDirection: 'column',
                                         margin: 5,
                                         alignItems: 'center',
-                                        borderWidth: selectedIndex === index ? 2 : 0,
-                                        borderColor: '#674A2C',
-                                        borderRadius: 20,
+                                        borderWidth: selectedIndex === index ? 2 : 2,
+                                        borderColor: selectedIndex === index ? '#674A2C' : 'rgba(255,255,255,0)',
+                                        borderRadius: 15,
                                         backgroundColor: selectedIndex === index ? "#DECCB9" : 'rgba(255,255,255,0)'
                                     }}
                                 >
