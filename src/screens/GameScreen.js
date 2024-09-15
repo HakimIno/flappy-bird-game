@@ -371,50 +371,81 @@ const GameScreen = ({ navigation }) => {
 
             {gameOverState && (
                 <>
+                    <ImageRn
+                        source={require("../../assets/WLogo.png")}
+                        style={{
+                            width: width * 0.15,  // Adjust the width as a percentage of the screen width
+                            height: width * 0.15, // Adjust the height proportionally
+                            resizeMode: 'contain',
+                            position: 'absolute',
+                            top: height * 0.38,   // Adjust the top position as a percentage of the screen height
+                            left: width * 0.18,  // Adjust the left position as a percentage of the screen width
+                        }}
+                    />
 
-                    <ImageRn source={require("../../assets/WLogo.png")} style={{ width: 60, height: 60, resizeMode: 'contain', position: 'absolute', top: "37%", left: "18%" }} />
-
-                    <View style={{ position: 'absolute', top: "41%", left: "23%" }}>
-                        <TextRn style={{ fontFamily: "PressStart2P_400Regular", fontSize: 20, color: "#674A2C" }}>
+                    <View
+                        style={{
+                            position: 'absolute',
+                            top: height * 0.425,
+                            left: width * 0.23,
+                        }}
+                    >
+                        <TextRn
+                            style={{
+                                fontFamily: "PressStart2P_400Regular",
+                                fontSize: width * 0.05,  // Adjust the font size proportionally
+                                color: "#674A2C",
+                            }}
+                        >
                             score: {score.toString()}
                         </TextRn>
                     </View>
 
-
-                    <View style={{ position: 'absolute', top: "53%", left: "-20%", flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', width: '100%', marginLeft: "40%" }}>
+                    <View
+                        style={{
+                            position: 'absolute',
+                            top: height * 0.53,
+                            left: width * -0.20,
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            width: width * 0.80,  // Adjust width of the container
+                            marginLeft: width * 0.40,
+                            gap: 80
+                        }}
+                    >
                         <TouchableOpacity
                             style={{
                                 backgroundColor: 'white',
                                 justifyContent: 'center',
                                 alignItems: 'center',
-                                padding: 15,
-                                borderRadius: 140,
+                                padding: width * 0.04,  // Adjust padding proportionally
+                                borderRadius: width * 0.1, // Adjust border radius proportionally
                                 borderWidth: 1,
                                 borderColor: "#4B3C46",
                             }}
                             onPress={() => navigation.goBack()}
                         >
-                            <Entypo name="chevron-left" size={50} color="black" />
+                            <Entypo name="chevron-left" size={width * 0.12} color="black" />
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={{
                                 backgroundColor: 'white',
                                 justifyContent: 'center',
                                 alignItems: 'center',
-                                padding: 15,
-                                borderRadius: 140,
+                                padding: width * 0.04,  // Adjust padding proportionally
+                                borderRadius: width * 0.1, // Adjust border radius proportionally
                                 borderWidth: 1,
                                 borderColor: "#4B3C46",
-                                marginRight: "40%"
-
+                                marginRight: width * 0.40, // Adjust margin right proportionally
                             }}
                             onPress={() => {
                                 if (gameOverState) {
-                                    restartGame()
+                                    restartGame();
                                 }
                             }}
                         >
-                            <Ionicons name="play" size={50} color="black" />
+                            <Ionicons name="play" size={width * 0.12} color="black" />
                         </TouchableOpacity>
                     </View>
                 </>

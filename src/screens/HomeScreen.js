@@ -9,6 +9,9 @@ import { useNotifications } from '../context/NotificationContext';
 import * as TaskManager from 'expo-task-manager';
 import * as BackgroundFetch from 'expo-background-fetch';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import ModalHowToPlay from '../components/ModalHowToPlay';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import VersionDisplay from '../components/VersionDisplay';
 
 
 
@@ -18,6 +21,31 @@ const HomeScreen = ({ navigation }) => {
     const [modalVisible, setModalVisible] = useState(false);
     const [advertData, setAdvertData] = useState([])
     const [baner, setBaner] = useState(null)
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    useEffect(() => {
+        checkFirstTime();
+    }, []);
+
+    const checkFirstTime = async () => {
+        try {
+            const hasShownModal = await AsyncStorage.getItem('hasShownModal');
+            if (hasShownModal !== 'true') {
+                setIsModalVisible(true);
+                await AsyncStorage.setItem('hasShownModal', 'true');
+            }
+        } catch (error) {
+            console.error('Error checking first time:', error);
+        }
+    };
+
+    const openModalHowto = () => {
+        setIsModalVisible(true);
+    };
+
+    const closeModalHowto = () => {
+        setIsModalVisible(false);
+    };
 
     async function fetchData() {
         let { data: advert, error } = await supabase
@@ -71,6 +99,22 @@ const HomeScreen = ({ navigation }) => {
                     fit="fill"
                 />
             </Canvas>
+            <VersionDisplay />
+
+            <View style={{ position: 'absolute', top: "5%", right: 10 }}>
+                <TouchableOpacity
+                    style={{
+                        backgroundColor: 'rgba(255,255,255,0.1)',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        padding: 8,
+                        borderRadius: 140,
+                    }}
+                    onPress={openModalHowto}
+                >
+                    <Ionicons name="golf-sharp" size={24} color="white" />
+                </TouchableOpacity>
+            </View>
 
             {advertData.length > 0 &&
                 <TouchableOpacity onPress={openModal} style={{ position: 'absolute', bottom: "2%", left: "2.5%", width: "95%", height: 80, borderEndWidth: 10, borderStartWidth: 10, borderRadius: 10, borderColor: "white" }}>
@@ -151,7 +195,6 @@ const HomeScreen = ({ navigation }) => {
                     <ImageRn source={require('../../assets/Logo_W_Baby_Bird.png')} style={{ width: 30, height: 30, resizeMode: 'contain', transform: [{ rotate: '0deg' }] }} />
                 </View>
 
-
                 {/* <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center', gap: 3 }}>
                     <TextRn style={{ fontFamily: 'PressStart2P_400Regular', color: "#4B3C46", fontSize: 13, paddingVertical: 5 }}>bird</TextRn>
                     <ImageCarousel
@@ -183,7 +226,8 @@ const HomeScreen = ({ navigation }) => {
                 onClose={closeModal}
                 advertData={advertData}
             />
-        </View >
+            <ModalHowToPlay visible={isModalVisible} onClose={closeModalHowto} />
+        </View>
     );
 };
 

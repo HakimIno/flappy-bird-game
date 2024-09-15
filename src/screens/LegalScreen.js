@@ -25,7 +25,7 @@ const LegalScreen = ({ navigation }) => {
                 <Entypo name="chevron-left" size={30} color="black" />
             </TouchableOpacity>
 
-            <View style={{ backgroundColor: 'rgba(255,255,255,0.5)', borderRadius: 20, borderWidth: 1, width: width * 0.9, height: height * 0.75, position: 'absolute', top: "15%", left: "5%" }}>
+            <View style={{ backgroundColor: 'rgba(255,255,255,0.3)', borderRadius: 20, borderWidth: 1, width: Math.min(width * 0.9, 600), height: Math.min(height * 0.75, 800), position: 'absolute', top: "15%", left: "5%" }}>
 
                 <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 5, marginTop: 20 }}>
                     <Pressable
@@ -257,7 +257,7 @@ const LegalScreen = ({ navigation }) => {
                     </ScrollView>
                 )}
             </View>
-        </View>
+        </View >
     )
 }
 
